@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
 
 class Movie {
     public $id;
@@ -18,14 +20,14 @@ class Movie {
      *
      * @param int $_id                  ID of the movie
      * @param string $_title            Title of the movie         
-     * @param string $_posterPath      Path to the image of the movie
-     * @param array $_genres             List of the genres of the movie
+     * @param string $_posterPath       Path to the image of the movie
+     * @param array $_genres            List of the genres of the movie
      * @param string $_language         Language the movie will be proiected
-     * @param string $_releaseDate     Date of release of the movie
+     * @param string $_releaseDate      Date of release of the movie
      * @param int $_length              Duration in minute of the movie
      * @param bool $_adult              True or false if the film is for adults
      * @param string $_overview         Brief description of the plot
-     * @param int $_review              A number between 1 and 10
+     * @param string $_review           A number between 1 and 10, if null a brief description is returned
      * @param array $_cast              List of acthors
      */
     function __construct($_id,$_title,$_posterPath,$_genres,$_language,$_releaseDate,$_length,$_adult,$_overview,$_review,$_cast) {
@@ -39,7 +41,7 @@ class Movie {
         $this->length = $_length;
         $this->adult = $_adult;
         $this->overview = $_overview;
-        $this->review = $_review;
+        $this->setReview($_review);
         $this->cast = $_cast;
     }
 
@@ -152,6 +154,27 @@ class Movie {
 
         }
         return $list;;
+    }
+
+    function setId ($_id) {
+        $this->id = $_id;
+    }
+
+    function setReview ($_review) {
+        if(is_int($_review))
+        {
+            if($_review > 0 && $_review <= 10)
+            {
+                $this->review = $_review;
+            }
+            else{
+                $this->review = "Non ci sono ancora valutazioni";
+            }
+        }else{
+            $this->review = "Non ci sono ancora valutazioni"; 
+        }
+
+        
     }
 }
 
