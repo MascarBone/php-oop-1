@@ -1,0 +1,19 @@
+img {
+    max-width: 100%;
+}
+section {
+    padding: 50px;
+}
+
+.wrapper {
+    display: flex;
+
+}
+
+.side-left {
+    margin-right: 50px;
+}
+
+.poster {
+    width: 300px;
+}
