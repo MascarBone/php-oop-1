@@ -1,9 +1,6 @@
 <?php
 
-use function PHPSTORM_META\type;
-
 class Movie {
-    public $id;
     public $title;
     public $posterPath;
     public $genres;
@@ -18,7 +15,6 @@ class Movie {
     /**
      * Construct to set the initial values of the instance
      *
-     * @param int $_id                  ID of the movie
      * @param string $_title            Title of the movie         
      * @param string $_posterPath       Path to the image of the movie
      * @param array $_genres            List of the genres of the movie
@@ -30,9 +26,8 @@ class Movie {
      * @param string $_review           A number between 1 and 10, if null a brief description is returned
      * @param array $_cast              List of acthors
      */
-    function __construct($_id,$_title,$_posterPath,$_genres,$_language,$_releaseDate,$_length,$_adult,$_overview,$_review,$_cast) {
+    function __construct($_title,$_posterPath,$_genres,$_language,$_releaseDate,$_length,$_adult,$_overview,$_review,$_cast) {
 
-        $this->id = $_id;
         $this->title = $_title;
         $this->posterPath = $_posterPath;
         $this->genres = $_genres;
@@ -45,14 +40,6 @@ class Movie {
         $this->cast = $_cast;
     }
 
-    /**
-     * Get the id value
-     *
-     * @return int ID
-     */
-    function getId () {
-        return $this->id;
-    }
     /**
      * Get the title of the movie
      *
@@ -75,18 +62,7 @@ class Movie {
      * @return string list of genres
      */
     function getGenres () {
-        $list = '';
-        foreach($this->genres as $index => $genre)
-        {
-            if(count($this->genres)-1 == $index)
-            {
-                $list .= $genre;   
-                break;
-            }
-            $list .= $genre . ', ';   
-
-        }
-        return $list;
+        return implode(", ", $this->genres);
     }
     /**
      * Get the language of the movie
@@ -142,22 +118,7 @@ class Movie {
      * @return array cast
      */
     function getCast () {
-        $list = '';
-        foreach($this->cast as $index => $achtor)
-        {
-            if(count($this->cast)-1 == $index)
-            {
-                $list .= $achtor;   
-                break;
-            }
-            $list .= $achtor . ', ';   
-
-        }
-        return $list;;
-    }
-
-    function setId ($_id) {
-        $this->id = $_id;
+        return implode(", ", $this->cast);
     }
 
     function setReview ($_review) {
